@@ -3,11 +3,25 @@ from flask_cors import CORS
 import time
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.exc import NoResultFound
+from bcrypt import hashpw, gensalt, checkpw
 
 app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://parkadmin:arkhambatmobile@localhost:3306/cardpark'
 db = SQLAlchemy(app)
+
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), unique=True, nullable=False)
+    pw_hash = db.Column(db.String(100), nullable=False)
+
+    def set_password(self, password):
+        self.pw_hash = hashpw(password.encode('utf-8'), gensalt()).decode('utf-8')
+
+    def check_password(self, password):
+        return checkpw(password.encode('utf-8'), self.pw_hash.encode('utf-8'))
 
 class ParkingRates(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -64,6 +78,22 @@ def handle_scan():
                 return jsonify(['exit',[time.strftime('%I:%M %p', time.localtime()),fee]])
     else:
          return jsonify('invalid')
+    
+@app.route('/api/login', methods=['POST'])
+def login():
+    data = request.json
+    credentials = data.get('data')
+    username = credentials[0]
+    password = credentials[1]
+
+    try:
+        user = Users.query.filter_by(username=username).one()
+        if user.check_password(password):
+            return jsonify({'message': 'Login successful'}), 200
+        else:
+            return jsonify({'message': 'Incorrect password'}), 401
+    except NoResultFound:
+        return jsonify({'message': 'User not found'}), 404
 
 @app.route('/api/datapipeline', methods=['GET'])
 def sendData():
@@ -83,6 +113,24 @@ def AdminControl():
     db.session.commit()
     InitializeRates()
     return jsonify('Data communication successful')
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    data = request.json
+    userdetails = data.get('data')
+    user = Users(username=userdetails[0])
+    user.set_password(userdetails[1])
+
+    try:
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({'message': 'User registered successfully'}), 201
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({'message': 'Username already exists'}), 409
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': 'Error registering user', 'error': str(e)}), 500
 
 if __name__ == '__main__':
     with app.app_context():

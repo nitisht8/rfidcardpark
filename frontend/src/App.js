@@ -1,15 +1,14 @@
-import cardvector from './assets/cardelement.png';
+import cardvector from './assets/cardimg.png';
 import * as React from 'react';
 import Slide from '@mui/material/Slide';
 import {LogIn} from './AdminLogin.js';
 import axios from 'axios';
 import { ShowMessage } from './EvaluateCard.js'
-import {AdminControl} from './AdminAccess.js'
 
 const adminCard = '0012411156'
 
 const cardimg = (
-  <img src={cardvector} alt='cardpic' style={{position:'absolute', left:'1200px',top:'225px',width:720,height:720}}/>
+  <img src={cardvector} alt='cardpic' style={{position:'absolute', left:'1002px',top:'320px',width:918,height:574, borderTopLeftRadius:'120px', borderBottomLeftRadius:'120px'}}/>
 );
 
 export default function App() {
@@ -18,13 +17,6 @@ export default function App() {
   const [loginpage, setloginpage] = React.useState(false);
   const [resp, setResponse] = React.useState(null);
   const [evaluate, setEvaluate] = React.useState(false);
-  const [auth, setAuth] = React.useState(false);
-
-  React.useEffect(() => {
-    if (auth) {
-      setloginpage(false);
-    }
-  }, [auth]);
 
   const processScan = (event) => {
     const { value } = event.target;
@@ -60,15 +52,14 @@ export default function App() {
         type="text" 
         value={inputValue} 
         onChange={processScan} 
-        style={{position: 'absolute',left: '-500px'}} 
+        style={{opacity:0}} 
         maxLength={10} 
       />
       <Slide direction="left" in={inFrame} mountOnEnter unmountOnExit>
         {cardimg}
       </Slide>
       {evaluate && <ShowMessage resp={resp} />}
-      {loginpage && <LogIn setAuth={setAuth}/>}
-      {auth && <AdminControl/>}
+      {loginpage && <LogIn />}
     </div>
   );
 }

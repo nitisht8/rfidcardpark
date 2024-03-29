@@ -1,7 +1,7 @@
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import React from 'react';
-import { AdminControl } from './AdminAccess';
+import { AdminControl } from './AdminAccess.js';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import Stack from '@mui/material/Stack';
@@ -26,9 +26,6 @@ export function Management(){
         setBack(true)
         }
     const SetRate=(event)=>{
-      console.log("r1:", r1);
-      console.log("r2:", r2);
-      console.log("r3:", r3);
       if(r1 !== '' && r2 !== '' && r3 !== ''){
         const newRates = [r1,r2,r3]
         axios.post('http://localhost:5000/api/admincontrol', { data: newRates })

@@ -8,6 +8,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
+import { AdminControl } from './AdminAccess.js';
+import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import Zoom from '@mui/material/Zoom';
+import AlertTitle from '@mui/material/AlertTitle';
 
 function Copyright(props) {
   return (
@@ -22,18 +28,44 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export function LogIn({setAuth}) {
+export function LogIn() {
+
+  const[id, setId] = React.useState('')
+  const[pw, setPw] = React.useState('')
+  const [visibility, setVisibility] = React.useState(true)
+  const [success, setSuccess] = React.useState(false)
+  const [pwerror, setPwerror] = React.useState(false)
+  const [iderror, setIderror] =  React.useState(false)
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const id = data.get('ID');
-    const password = data.get('password');
-    if (id === 'nitisht' && password === 'arkhambatmobile'){
-      setAuth(true);
-    }
-  };
-
+    const logindata = [id,pw]
+    axios.post('http://localhost:5000/api/login', { data: logindata })
+          .then(response => {
+            if (response.status===200){
+              setVisibility(false);
+              setSuccess(true);
+            }
+          })
+          .catch(error => {
+            if (error.response.status===404){
+              setIderror(true);
+              setTimeout(() => {
+                setIderror(false);
+              }, 3000);
+            }
+            else if (error.response.status===401){
+              setPwerror(true);
+              setTimeout(() => {
+                setPwerror(false);
+              }, 3000);
+            }
+          });
+  }
   return (
+    <div>
+      <Fade in={visibility} timeout={200} >
+        <div>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs"
       sx={{ width: 375,
@@ -43,7 +75,7 @@ export function LogIn({setAuth}) {
         left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)',
         bgcolor: '#ffe066',
-                }}>
+        }}>
         <CssBaseline />
         <Box
           sx={{
@@ -57,41 +89,40 @@ export function LogIn({setAuth}) {
           <Typography component="h1" variant="h4">
             Administrator Access
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="AdminID"
-              name="ID"
-              color='secondary'
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              color='secondary'
-            />
+          <TextField id='username' label='New Username' variant='outlined' value={id} onChange={(e)=>setId(e.target.value)}
+          style={{ marginBottom: '20px', width: '100%' }} />
+          <TextField id='password' label='Password' value={pw} onChange={(e)=>setPw(e.target.value)}
+          style={{ marginBottom: '20px', width: '100%' }} />
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
+              onClick={handleSubmit}
               sx={{ mt: 3, mb: 2 ,
             bgcolor:'#7927c4'
         }}
             >
             Login
             </Button>
-          </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </div>
+    </Fade>
+    <Zoom in={iderror}>
+        <Alert severity="warning" style={{width:'720px', position:'absolute',left:'50%', top:'50%'}}>
+        <AlertTitle>Wrong Id!</AlertTitle>
+        Please ensure you have entered your correct Staff ID.
+        </Alert>
+        </Zoom>
+        <Zoom in={pwerror} severity='warning' style={{width:'720px', position:'absolute',left:'50%', top:'50%'}}>
+          <Alert>
+            <AlertTitle>Wrong Password!</AlertTitle>
+            Please ensure that you have entered the correct password.
+          </Alert>
+        </Zoom>
+    {success && <AdminControl/>}
+    </div>
   );
 }

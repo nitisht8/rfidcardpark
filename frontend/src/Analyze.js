@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, Fade } from '@mui/material';
-import { AdminControl } from './AdminAccess';
+import { AdminControl } from './AdminAccess.js';
 
 export function ShowData(){
     const [data, setData] = useState([]);
