@@ -73,11 +73,11 @@ export function ShowMessage({ resp }) {
                     <div>
                         <img src={exitimg} alt="exit" style={imgStyle} />
                         <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: '15px', borderRadius: '45px' }}>
+                            ₹{resp[1][1]}
+                            <br />
                             Thank you for visiting!
                             <br />
                             Time of Exit: {resp[1][0]}
-                            <br />
-                            ₹{resp[1][1]}
                         </Typography>
                     </div>
                 </Zoom>

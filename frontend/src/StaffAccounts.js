@@ -8,14 +8,23 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Zoom from '@mui/material/Zoom';
 import Stack from '@mui/material/Stack';
+import Fade from '@mui/material/Fade';
+import { AdminControl } from './AdminAccess.js';
 
-export function ManageUsers(){
+export function ManageStaff(){
 
+    const[visibility, setVisibility] = React.useState(true);
+    const[back, setBack] = React.useState(false)
     const[id, setId] = React.useState('')
     const[pw, setPw] = React.useState('')
     const[success, setSuccess] = React.useState(false)
     const[duplicate, setDuplicate] = React.useState(false)
     const[error, setError] = React.useState(false)
+
+    const goBack=()=>{
+        setVisibility(false)
+        setBack(true)
+        }
     
     const AddUser = (event) =>{
         if(id !== '' && pw !== ''){
@@ -46,13 +55,29 @@ export function ManageUsers(){
     }
 
     return (
-        <Stack direction="column" alignItems="center" justifyContent="center" spacing={4} sx={{ height: '100vh' }}>
-            <Paper elevation={4} sx={{ width: '400px', height: '400px', bgcolor: '#444444', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
-                <Typography variant='h4' style={{ color: '#ffffff', marginBottom: '20px' }}>Manage Users</Typography>
-                <TextField id='username' label='New Username' variant='outlined' value={id} onChange={(e)=>setId(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
-                <TextField id='password' label='Password' value={pw} onChange={(e)=>setPw(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
+        <div>
+        <Fade in={visibility}>
+    <div>
+        <Stack direction="column" alignItems="center" justifyContent="center" spacing={4} sx={{ height: '105vh', width:'100vw', position:'absolute' }}>
+            <Paper elevation={4} sx={{ width: '400px', height: '400px', bgcolor: '#FFDE59', display: 'flex',
+            flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '20px' }}>
+                <Typography variant='h4' style={{ marginBottom: '20px' }}>Manage Users</Typography>
+                <TextField id='username' label='New Username' variant='outlined' value={id}
+                onChange={(e)=>setId(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
+                <TextField id='password' label='Password' value={pw}
+                onChange={(e)=>setPw(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
                 <Button variant='contained' style={{ width: '200px', height: '50px' }} onClick={AddUser}>Save</Button>
             </Paper>
+            <Button
+            style={{
+              
+              width: 150
+            }}
+            variant="contained"
+            onClick={() => goBack()}
+          >
+            Back
+          </Button>
             <Zoom in={duplicate}>
                 <Alert severity="warning" style={{ width: '720px', position: 'absolute', left: '30.45%', top: '50%' }}>
                     <AlertTitle>Username already exists.</AlertTitle>
@@ -66,5 +91,9 @@ export function ManageUsers(){
                 </Alert>
             </Zoom>
         </Stack>
+        </div>
+        </Fade>
+        {back && <AdminControl/>}
+        </div>
     )
 }

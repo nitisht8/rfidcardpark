@@ -4,6 +4,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { AdminControl } from './AdminAccess.js';
 
 export function ShowData(){
+    
     const [data, setData] = useState([]);
     const [received, setreceived] = useState(false);
     const [back, setBack] = useState(false);
@@ -66,13 +67,15 @@ export function ShowData(){
         </TableContainer>
         <Button
             style={{
-              marginTop: 20,
-              width: 200
+              position: 'absolute',
+              marginTop: 785,
+              marginLeft: 320,
+              width: 150
             }}
             variant="contained"
             onClick={() => goBack()}
           >
-            Return Home
+            Back
           </Button>
           </div>
           </Fade>

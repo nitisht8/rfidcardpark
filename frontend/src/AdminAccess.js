@@ -6,8 +6,8 @@ import settingsimg from './assets/settings.png';
 import usersimg from './assets/users.png'
 import Fade from '@mui/material/Fade';
 import { ShowData } from './Analyze.js';
-import { Management } from './Manage.js';
-import { ManageUsers } from './UserAccounts.js';
+import { ManageSystem } from './Manage.js';
+import { ManageStaff } from './StaffAccounts.js';
 import App from './App.js'
 import './fonts.css'
 import { Typography } from '@mui/material';
@@ -27,7 +27,7 @@ export function AdminControl() {
   const [mainscreen, setMainscreen] = React.useState(false);
   const [analytics, setAnalytics] = React.useState(false);
   const [management, setManagement] = React.useState(false);
-  const [users, setUsers] = React.useState(false)
+  const [staff, setStaff] = React.useState(false)
 
   const handleClick = (buttontype) => {
     setVisibility(false);
@@ -42,7 +42,7 @@ export function AdminControl() {
         setMainscreen(true);
     }
     else if (buttontype==='users'){
-      setUsers(true)
+      setStaff(true)
     }
   };
 
@@ -62,15 +62,27 @@ export function AdminControl() {
               style={{ ...ButtonStyle, backgroundImage: `url(${analyticimg})`, backgroundPositionY:'65px' }}
               variant='contained'
               onClick={() => handleClick('analyze')}
-            ></Button>
+            >
+              <p style={{fontFamily:'mavenpro', position:'relative', top:'-120px', fontSize:'50px', color:'black'}}>
+                Analytics
+              </p>
+            </Button>
             <Button
-              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'65px'}}
+              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'68px'}}
               variant='contained'
               onClick={() => handleClick('manage')}
-            ></Button>
-            <Button style={{...ButtonStyle, backgroundImage: `url(${usersimg})`}}
+            >
+              <p style={{fontFamily:'mavenpro', position:'relative', top:'-120px', fontSize:'50px', color:'black'}}>
+                System
+              </p>
+            </Button>
+            <Button style={{...ButtonStyle, backgroundImage: `url(${usersimg})`,backgroundPositionY:'70px'}}
                     variant='contained'
-                    onClick={()=>handleClick('users')}></Button>
+                    onClick={()=>handleClick('users')}>
+                      <p style={{fontFamily:'mavenpro', position:'relative', top:'-120px', fontSize:'50px', color:'black'}}>
+                Staff
+              </p>
+                    </Button>
           </Stack>
           <Button
             style={{
@@ -86,8 +98,8 @@ export function AdminControl() {
       </Fade>
       {mainscreen && <App />}
       {analytics && <ShowData />}
-      {management && <Management />}
-      {users && <ManageUsers />}
+      {management && <ManageSystem />}
+      {staff && <ManageStaff />}
     </div>
   );
 }

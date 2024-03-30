@@ -72,7 +72,7 @@ export function LogIn() {
         height: 450,
         borderRadius: 5,
         position : 'absolute',
-        left: '50%', top: '50%',
+        left: '50%', top: '55%',
         transform: 'translate(-50%, -50%)',
         bgcolor: '#ffe066',
         }}>
