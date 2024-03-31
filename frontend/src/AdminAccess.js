@@ -16,9 +16,9 @@ const ButtonStyle = {
   backgroundSize: '80%',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-  height: '325px',
-  width: '325px',
-  borderRadius: '20px',
+  height: '38vh',
+  width: '20vw',
+  borderRadius: 20,
 };
 
 export function AdminControl() {
@@ -53,41 +53,41 @@ export function AdminControl() {
           style={{
             position: 'absolute',
             left: '50%',
-            top: '50%',
+            top: '52%',
             transform: 'translate(-50%, -50%)'
           }}
         >
-          <Stack direction='row' spacing={10}>
+          <Stack direction='row' spacing={8}>
             <Button
-              style={{ ...ButtonStyle, backgroundImage: `url(${analyticimg})`, backgroundPositionY:'65px' }}
+              style={{ ...ButtonStyle, backgroundImage: `url(${analyticimg})`, backgroundPositionY: '150%' }}
               variant='contained'
               onClick={() => handleClick('analyze')}
             >
-              <p style={{fontFamily:'mavenpro', position:'relative', top:'-120px', fontSize:'50px', color:'black'}}>
+              <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'400%', color:'black'}}>
                 Analytics
               </p>
             </Button>
             <Button
-              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'68px'}}
+              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'235%'}}
               variant='contained'
               onClick={() => handleClick('manage')}
             >
-              <p style={{fontFamily:'mavenpro', position:'relative', top:'-120px', fontSize:'50px', color:'black'}}>
+              <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'400%', color:'black'}}>
                 System
               </p>
             </Button>
-            <Button style={{...ButtonStyle, backgroundImage: `url(${usersimg})`,backgroundPositionY:'70px'}}
+            <Button style={{...ButtonStyle, backgroundImage: `url(${usersimg})`,backgroundPositionY:'120%'}}
                     variant='contained'
                     onClick={()=>handleClick('users')}>
-                      <p style={{fontFamily:'mavenpro', position:'relative', top:'-120px', fontSize:'50px', color:'black'}}>
+                      <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'400%', color:'black'}}>
                 Staff
               </p>
                     </Button>
           </Stack>
           <Button
             style={{
-              marginTop: 20,
-              width: 200,
+              marginTop: '1vh',
+              width: '15vw',
             }}
             variant="contained"
             onClick={() => handleClick('return')}

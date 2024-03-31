@@ -37,11 +37,30 @@ export function ShowData(){
         <div>
             <Fade in={visibility}>
                 <div>
-        <Typography variant='h4' style={{backgroundColor:'#ffe066',maxWidth:'320px',borderRadius:'10px',padding:6,position:'absolute',top:'40.6%',left:'17%',
-                                        boxShadow: '5px 5px 5px rgba(0.2, 0.2, 0.2, 0.2)',display: 'inline-block'}}>Recent Transactions</Typography>
-        <TableContainer component={Paper} elevation={7} style={{maxWidth: '1280px',maxHeight:'365px', margin: '0 auto', position : 'absolute',
-                                                                left: '50%', top: '65%', borderRadius:'10px',
-                                                                transform: 'translate(-50%, -50%)'}}>
+                <Typography variant='h4' style={{
+                    backgroundColor: '#ffe066',
+                    width: '18%',
+                    borderRadius: '10px',
+                    padding: '1.5vh',
+                    position: 'absolute',
+                    top: '42vh',
+                    left: '17vw',
+                    boxShadow: '5px 5px 5px rgba(0.2, 0.2, 0.2, 0.2)',
+                    display: 'inline-block',
+                    }}>
+                    Recent Transactions
+                    </Typography>
+
+                    <TableContainer component={Paper} elevation={7} style={{
+                    maxWidth: '68vw',
+                    maxHeight: '33.6vh',
+                    margin: '0 auto',
+                    position: 'absolute',
+                    left: '50%',
+                    top: '65vh',
+                    borderRadius: '10px',
+                    transform: 'translate(-50%, -50%)',
+                    }}>
             <Table size='small'>
                 <TableHead>
                     <TableRow style={{backgroundColor:'#ffe066'}}>
@@ -68,9 +87,9 @@ export function ShowData(){
         <Button
             style={{
               position: 'absolute',
-              marginTop: 785,
-              marginLeft: 320,
-              width: 150
+              marginTop: '40%',
+              marginLeft: '16%',
+              width: '8%'
             }}
             variant="contained"
             onClick={() => goBack()}

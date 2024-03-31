@@ -59,14 +59,14 @@ export function ManageStaff(){
         <Fade in={visibility}>
     <div>
         <Stack direction="column" alignItems="center" justifyContent="center" spacing={4} sx={{ height: '105vh', width:'100vw', position:'absolute' }}>
-            <Paper elevation={4} sx={{ width: '400px', height: '400px', bgcolor: '#FFDE59', display: 'flex',
+            <Paper elevation={4} sx={{ width: '20vw', height: '42vh', bgcolor: '#FFDE59', display: 'flex',
             flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '20px' }}>
-                <Typography variant='h4' style={{ marginBottom: '20px' }}>Manage Users</Typography>
+                <Typography variant='h4' style={{ marginBottom: 20 }}>Manage Users</Typography>
                 <TextField id='username' label='New Username' variant='outlined' value={id}
                 onChange={(e)=>setId(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
                 <TextField id='password' label='Password' value={pw}
                 onChange={(e)=>setPw(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
-                <Button variant='contained' style={{ width: '200px', height: '50px' }} onClick={AddUser}>Save</Button>
+                <Button variant='contained' style={{ width: '35%', height: '13%' }} onClick={AddUser}>Save</Button>
             </Paper>
             <Button
             style={{
@@ -79,14 +79,14 @@ export function ManageStaff(){
             Back
           </Button>
             <Zoom in={duplicate}>
-                <Alert severity="warning" style={{ width: '720px', position: 'absolute', left: '30.45%', top: '50%' }}>
-                    <AlertTitle>Username already exists.</AlertTitle>
-                    Please enter a new username.
+                <Alert severity="warning" style={{width:'19vw', position:'absolute',left:'40.5vw', top:'67vh'}}>
+                    <AlertTitle>ID already exists.</AlertTitle>
+                    Please enter new Staff ID.
                 </Alert>
             </Zoom>
             <Zoom in={success}>
-                <Alert severity="success" style={{ width: '720px', position: 'absolute', left: '30.45%', top: '50%' }}>
-                    <AlertTitle>New User successfully added!</AlertTitle>
+                <Alert severity="success" style={{width:'19vw', position:'absolute',left:'40.5vw', top:'67vh'}}>
+                    <AlertTitle>New Staff Account successfully added!</AlertTitle>
                     You may log in using your credentials.
                 </Alert>
             </Zoom>

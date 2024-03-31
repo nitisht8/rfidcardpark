@@ -14,7 +14,7 @@ const containerStyle = {
 };
 
 const imgStyle = {
-    width: '700px',
+    width: '40vw',
     height: 'auto',
 };
 
@@ -48,7 +48,7 @@ export function ShowMessage({ resp }) {
                 <Zoom in={invalid}>
                     <div>
                         <img src={invalidimg} alt='invalid' style={imgStyle} />
-                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: '5px', borderRadius: '45px' }}>
+                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding:2, borderRadius: 45 }}>
                             Invalid Card!
                             <br />
                             Please scan a valid card.
@@ -60,7 +60,7 @@ export function ShowMessage({ resp }) {
                 <Zoom in={entry}>
                     <div>
                         <img src={entryimg} alt="entry" style={imgStyle} />
-                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: '15px', borderRadius: '45px' }}>
+                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: 5, borderRadius: 45 }}>
                             Welcome to CardPark!
                             <br />
                             Time of Entry: {resp[1]}
@@ -72,7 +72,7 @@ export function ShowMessage({ resp }) {
                 <Zoom in={exit}>
                     <div>
                         <img src={exitimg} alt="exit" style={imgStyle} />
-                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: '15px', borderRadius: '45px' }}>
+                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: 5, borderRadius: 45}}>
                             ₹{resp[1][1]}
                             <br />
                             Thank you for visiting!
