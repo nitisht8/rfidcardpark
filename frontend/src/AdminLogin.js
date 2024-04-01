@@ -71,11 +71,11 @@ export function LogIn() {
         <div>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs"
-      sx={{ width: '20vw',
-        height: '39vh',
+      sx={{ width: '25vw',
+        height: '54vh',
         borderRadius: 5,
         position : 'absolute',
-        left: '50%', top: '50%',
+        left: '50%', top: '57%',
         transform: 'translate(-50%, -50%)',
         bgcolor: '#ffe066',
         }}>
@@ -89,7 +89,7 @@ export function LogIn() {
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           </Avatar>
-          <Typography component="h1" variant="h4" style={{marginBottom:'3vh'}}>
+          <Typography component="h1" variant="h5" style={{marginBottom:'3vh'}}>
             Administrator Access
           </Typography>
           <TextField id='username' label='Staff ID' variant='outlined' value={id} onChange={(e)=>setId(e.target.value)}

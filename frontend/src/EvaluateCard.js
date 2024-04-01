@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Zoom from '@mui/material/Zoom';
 import entryimg from './assets/entryvalidate.png';
-import exitimg from './assets/exitvalidate.png';
+import exitimg from './assets/qrplaceholder.png';
 import invalidimg from './assets/invalid.png';
 import { Typography } from '@mui/material';
 
@@ -48,7 +48,7 @@ export function ShowMessage({ resp }) {
                 <Zoom in={invalid}>
                     <div>
                         <img src={invalidimg} alt='invalid' style={imgStyle} />
-                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding:2, borderRadius: 45 }}>
+                        <Typography variant="h5" style={{ backgroundColor: '#ffe066', padding:2, borderRadius: 45 }}>
                             Invalid Card!
                             <br />
                             Please scan a valid card.
@@ -60,7 +60,7 @@ export function ShowMessage({ resp }) {
                 <Zoom in={entry}>
                     <div>
                         <img src={entryimg} alt="entry" style={imgStyle} />
-                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: 5, borderRadius: 45 }}>
+                        <Typography variant="h5" style={{ backgroundColor: '#ffe066', padding: 5, borderRadius: 45 }}>
                             Welcome to CardPark!
                             <br />
                             Time of Entry: {resp[1]}
@@ -71,8 +71,8 @@ export function ShowMessage({ resp }) {
             {exit && (
                 <Zoom in={exit}>
                     <div>
-                        <img src={exitimg} alt="exit" style={imgStyle} />
-                        <Typography variant="h4" style={{ backgroundColor: '#ffe066', padding: 5, borderRadius: 45}}>
+                        <img src={exitimg} alt="exit" style={{height:'35vh', width:'auto'}} />
+                        <Typography variant="h5" style={{ backgroundColor: '#ffe066', padding: 10, borderRadius: 45}}>
                             ₹{resp[1][1]}
                             <br />
                             Thank you for visiting!

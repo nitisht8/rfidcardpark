@@ -8,7 +8,7 @@ import { ShowMessage } from './EvaluateCard.js'
 const adminCard = '0012411156'
 
 const cardimg = (
-  <img src={cardvector} alt='cardpic' style={{position:'absolute', left:'56.3vw',top:'38vh', height:'55vh', width:'auto',borderTopLeftRadius:80,borderBottomLeftRadius:80}}/>
+  <img src={cardvector} alt='cardpic' style={{position:'absolute', left:'58.7vw',top:'38vh', height:'55vh', width:'auto',borderTopLeftRadius:80,borderBottomLeftRadius:80}}/>
 );
 
 export default function App() {
