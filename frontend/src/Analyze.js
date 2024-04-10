@@ -39,11 +39,11 @@ export function ShowData(){
                 <div>
                 <Typography variant='h4' style={{
                     backgroundColor: '#ffe066',
-                    width: '18%',
+                    width: '25vw',
                     borderRadius: '10px',
                     padding: '1.5vh',
                     position: 'absolute',
-                    top: '42vh',
+                    top: '41vh',
                     left: '17vw',
                     boxShadow: '5px 5px 5px rgba(0.2, 0.2, 0.2, 0.2)',
                     display: 'inline-block',
@@ -87,7 +87,7 @@ export function ShowData(){
         <Button
             style={{
               position: 'absolute',
-              marginTop: '40%',
+              marginTop: '72vh',
               marginLeft: '16%',
               width: '8%'
             }}

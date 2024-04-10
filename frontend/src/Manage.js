@@ -61,7 +61,7 @@ export function ManageSystem(){
                 }}>
                     <Paper elevation={4} style={{height:'40vh', width:'400px', backgroundColor:'#FFDE59', textAlign: 'center', borderRadius:'20px'}}>
                         <Stack direction='column' spacing={1} alignItems="center">
-                            <Typography variant='h4' style={{marginBottom:5, marginTop:8}}>Modify Parking Rates</Typography>
+                            <Typography variant='h5' style={{marginBottom:2, marginTop:8}}>Modify Parking Rates</Typography>
                             <TextField id='Rate1' label='Upto 1 hour' variant='outlined' value={r1} onChange={(e)=>setR1(e.target.value)} style={{width: '80%', marginBottom: 10}} />
                             <TextField id='Rate2' label='1-3 hours' value={r2} onChange={(e)=>setR2(e.target.value)} style={{width: '80%', marginBottom: 10}} />
                             <TextField id='Rate3' label='3-12 hours' value={r3} onChange={(e)=>setR3(e.target.value)} style={{width: '80%', marginBottom: 10}} />

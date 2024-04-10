@@ -59,27 +59,27 @@ export function AdminControl() {
         >
           <Stack direction='row' spacing={8}>
             <Button
-              style={{ ...ButtonStyle, backgroundImage: `url(${analyticimg})`, backgroundPositionY: '150%' }}
+              style={{ ...ButtonStyle, backgroundImage: `url(${analyticimg})`, backgroundPositionY: '225%' }}
               variant='contained'
               onClick={() => handleClick('analyze')}
             >
-              <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'400%', color:'black'}}>
+              <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'350%', color:'black'}}>
                 Analytics
               </p>
             </Button>
             <Button
-              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'235%'}}
+              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'450%'}}
               variant='contained'
               onClick={() => handleClick('manage')}
             >
-              <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'400%', color:'black'}}>
+              <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'350%', color:'black'}}>
                 System
               </p>
             </Button>
-            <Button style={{...ButtonStyle, backgroundImage: `url(${usersimg})`,backgroundPositionY:'120%'}}
+            <Button style={{...ButtonStyle, backgroundImage: `url(${usersimg})`,backgroundPositionY:'150%'}}
                     variant='contained'
                     onClick={()=>handleClick('users')}>
-                      <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'400%', color:'black'}}>
+                      <p style={{fontFamily:'mavenpro', position:'relative', top:'-14.2vh', fontSize:'350%', color:'black'}}>
                 Staff
               </p>
                     </Button>
