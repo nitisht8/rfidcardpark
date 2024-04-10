@@ -57,27 +57,40 @@ export function ManageStaff(){
     return (
         <div>
         <Fade in={visibility}>
-    <div>
-        <Stack direction="column" alignItems="center" justifyContent="center" spacing={4} sx={{ height: '105vh', width:'100vw', position:'absolute' }}>
-            <Paper elevation={4} sx={{ width: '20vw', height: '42vh', bgcolor: '#FFDE59', display: 'flex',
-            flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '20px' }}>
-                <Typography variant='h4' style={{ marginBottom: 20 }}>Manage Users</Typography>
+            <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '57%',
+                    transform: 'translate(-50%, -50%)'
+                }} >
+            <Stack direction='row' spacing={2} alignItems='center'>
+            <Paper elevation={4} style={{height:'40vh', width:'20vw', backgroundColor:'#FFDE59', textAlign: 'center', borderRadius:'20px'}}>
+                        <Stack direction='column' spacing={1} alignItems="center">
+                <Typography variant='h4' style={{ marginBottom: 20, marginTop: 10 }}>Add New Staff</Typography>
                 <TextField id='username' label='New Username' variant='outlined' value={id}
-                onChange={(e)=>setId(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
+                onChange={(e)=>setId(e.target.value)} style={{ marginBottom: '20px', width: '80%' }} />
                 <TextField id='password' label='Password' value={pw}
-                onChange={(e)=>setPw(e.target.value)} style={{ marginBottom: '20px', width: '100%' }} />
+                onChange={(e)=>setPw(e.target.value)} style={{ marginBottom: '20px', width: '80%' }} />
                 <Button variant='contained' style={{ width: '35%', height: '13%' }} onClick={AddUser}>Save</Button>
+                </Stack>
             </Paper>
+            <Paper elevation={4} style={{height:'40vh', width:'20vw', backgroundColor:'#FFDE59', textAlign: 'center', borderRadius:'20px'}}>
+            <Typography variant='h4' style={{ marginBottom: 20, marginTop: 10 }}>Delete Existing Staff</Typography>    
+            </Paper>
+            </Stack>
             <Button
             style={{
-              
-              width: 150
-            }}
+                position: 'absolute',
+                marginTop: '3%',
+                width: '40%'
+              }}
             variant="contained"
             onClick={() => goBack()}
           >
             Back
           </Button>
+          </div>
+          </Fade>
             <Zoom in={duplicate}>
                 <Alert severity="warning" style={{width:'19vw', position:'absolute',left:'40.5vw', top:'67vh'}}>
                     <AlertTitle>ID already exists.</AlertTitle>
@@ -90,9 +103,6 @@ export function ManageStaff(){
                     You may log in using your credentials.
                 </Alert>
             </Zoom>
-        </Stack>
-        </div>
-        </Fade>
         {back && <AdminControl/>}
         </div>
     )

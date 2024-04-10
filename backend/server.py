@@ -12,7 +12,7 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://parkadmin:arkhambatmobile@localhost:3306/cardpark'
 db = SQLAlchemy(app)
 
-class Users(db.Model):
+class Staff(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     pw_hash = db.Column(db.String(100), nullable=False)
@@ -31,6 +31,10 @@ class ParkingRates(db.Model):
 
     __table_args__ = (UniqueConstraint('id', name='_id_uc'),)
 
+class Cards(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    card_id = db.Column(db.String(10), unique=True, nullable=False)
+
 class CardTransactions(db.Model):
     transaction_id = db.Column(db.Integer, primary_key=True)
     card_id = db.Column(db.String(10), nullable=False)
@@ -46,7 +50,6 @@ def InitializeRates():
     parking_rates = ParkingRates.query.first()
     rate1, rate2, rate3 = parking_rates.rate1, parking_rates.rate2, parking_rates.rate3
 
-Cards = ['0009712668','0010733093','0009730426','0009767791','0009778699']
 Parked = {}     
 
 @app.route('/api/cardprocess', methods=['POST'])
@@ -54,7 +57,8 @@ def handle_scan():
     global rate1, rate2, rate3
     data = request.json  
     cardID = data.get('data')
-    if cardID in Cards:
+    cardValid = Cards.query.filter_by(card_id=cardID).first()
+    if cardValid:
             if cardID not in Parked:
                 now=time.localtime()
                 Parked[cardID]=now
@@ -87,7 +91,7 @@ def login():
     password = credentials[1]
 
     try:
-        user = Users.query.filter_by(username=username).one()
+        user = Staff.query.filter_by(username=username).one()
         if user.check_password(password):
             return jsonify({'message': 'Login successful'}), 200
         else:
@@ -100,6 +104,23 @@ def sendData():
     data=CardTransactions.query.all()
     formatted = [{'Transaction ID':item.transaction_id,'Card':item.card_id,'Event':item.transaction_type,'Time':item.time,'Fee':item.fee_charged} for item in data]
     return jsonify(formatted)
+
+@app.route('/api/addcard', methods=['POST'])
+def AddCard():
+  data = request.json
+  card_id = data.get('cardID')
+
+  if len(card_id) != 10:
+        return jsonify('Invalid card ID'), 400
+
+  try:
+    new_card = Cards(card_id=card_id)
+    db.session.add(new_card)
+    db.session.commit()
+    return jsonify('Card Added Successfully'), 201
+  except IntegrityError:
+    db.session.rollback()
+    return jsonify('Card ID already exists'), 409
 
 @app.route('/api/admincontrol', methods=['POST'])
 def AdminControl():
@@ -118,7 +139,7 @@ def AdminControl():
 def register():
     data = request.json
     userdetails = data.get('data')
-    user = Users(username=userdetails[0])
+    user = Staff(username=userdetails[0])
     user.set_password(userdetails[1])
 
     try:
