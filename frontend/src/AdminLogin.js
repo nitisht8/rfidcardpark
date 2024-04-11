@@ -93,9 +93,9 @@ export function LogIn() {
             Administrator Access
           </Typography>
           <TextField id='username' label='Staff ID' variant='outlined' value={id} onChange={(e)=>setId(e.target.value)}
-          style={{ marginBottom: '2vh', width: '100%' }} />
+          style={{backgroundColor:'white', marginBottom: '2vh', width: '100%' }} />
           <TextField id='password' label='Password' value={pw} onChange={(e)=>setPw(e.target.value)}
-          style={{ marginBottom: '2vh', width: '100%' }} />
+          style={{backgroundColor:'white', marginBottom: '2vh', width: '100%' }} />
             <Button
               type="button"
               fullWidth
@@ -114,12 +114,12 @@ export function LogIn() {
     </div>
     </Fade>
     <Zoom in={iderror}>
-        <Alert severity="warning" style={{width:'20vw', position:'absolute',left:'40vw', top:'70vh'}}>
+        <Alert severity="warning" style={{width:'20vw', position:'absolute',left:'40vw', top:'50vh'}}>
         <AlertTitle>Wrong Id!</AlertTitle>
         Please ensure you have entered your correct Staff ID.
         </Alert>
         </Zoom>
-        <Zoom in={pwerror} severity='warning' style={{width:'20vw', position:'absolute',left:'40vw', top:'70vh'}}>
+        <Zoom in={pwerror} severity='warning' style={{width:'20vw', position:'absolute',left:'40vw', top:'50vh'}}>
           <Alert>
             <AlertTitle>Wrong Password!</AlertTitle>
             Please ensure that you have entered the correct password.

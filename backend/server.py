@@ -122,8 +122,23 @@ def AddCard():
     db.session.rollback()
     return jsonify('Card ID already exists'), 409
 
-@app.route('/api/admincontrol', methods=['POST'])
-def AdminControl():
+@app.route('/api/deletecard', methods=['POST'])
+def DeleteCard():
+  data=request.json
+  card_id = data.get('cardID')
+  try:
+    card_to_delete = Cards.query.filter_by(card_id=card_id).one()
+    if not card_to_delete:
+      return jsonify('Card not found'), 404
+    db.session.delete(card_to_delete)
+    db.session.commit()
+    return jsonify('Card deleted successfully'), 200
+  except Exception as e:
+    db.session.rollback()
+    return jsonify(f'An error occurred: {str(e)}'), 500
+
+@app.route('/api/updaterates', methods=['POST'])
+def UpdateRates():
     d=request.json
     newRates=d.get('data')
     existing_rates = ParkingRates.query.first()
@@ -138,9 +153,9 @@ def AdminControl():
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.json
-    userdetails = data.get('data')
-    user = Staff(username=userdetails[0])
-    user.set_password(userdetails[1])
+    newdetails = data.get('data')
+    user = Staff(username=newdetails[0])
+    user.set_password(newdetails[1])
 
     try:
         db.session.add(user)
@@ -152,6 +167,31 @@ def register():
     except Exception as e:
         db.session.rollback()
         return jsonify({'message': 'Error registering user', 'error': str(e)}), 500
+    
+@app.route('/api/deletestaff', methods=['POST'])
+def DeleteStaff():
+  data = request.json
+  staffdetails = data.get('data')
+  username = staffdetails[0]
+  password = staffdetails[1]
+
+  try:
+    user = Staff.query.filter_by(username=username).one()
+
+    if user.check_password(password):
+      db.session.delete(user)
+      db.session.commit()
+      return jsonify('Staff deleted successfully'), 200
+    else:
+      return jsonify({'message': 'Incorrect password'}), 401
+
+  except NoResultFound:
+    return jsonify({'message': 'Staff not found'}), 404
+
+  except Exception as e:
+    db.session.rollback()
+    return jsonify(f'An error occurred: {str(e)}'), 500
+
 
 if __name__ == '__main__':
     with app.app_context():

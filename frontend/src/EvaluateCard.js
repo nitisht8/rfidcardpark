@@ -7,7 +7,7 @@ import { Typography } from '@mui/material';
 
 const containerStyle = {
     position: 'fixed',
-    top: '50%',
+    top: '55%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     textAlign: 'center',
@@ -72,13 +72,14 @@ export function ShowMessage({ resp }) {
                 <Zoom in={exit}>
                     <div>
                         <img src={exitimg} alt="exit" style={{height:'35vh', width:'auto'}} />
-                        <Typography variant="h5" style={{ backgroundColor: '#ffe066', padding: 10, borderRadius: 45}}>
-                            ₹{resp[1][1]}
-                            <br />
-                            Thank you for visiting!
-                            <br />
-                            Time of Exit: {resp[1][0]}
+                        <Typography variant="body1" style={{ backgroundColor: '#ffe066', padding: 7, borderRadius: 45, margin: 0, lineHeight: 1.2 }}>
+                        <span style={{fontSize:'1.7rem'}}><b>₹{resp[1][1]}</b></span>
+                        <br />
+                        Thank you for visiting!
+                        <br />
+                        Time of Exit: {resp[1][0]}
                         </Typography>
+
                     </div>
                 </Zoom>
             )}

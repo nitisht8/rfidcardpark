@@ -5,7 +5,7 @@ import {LogIn} from './AdminLogin.js';
 import axios from 'axios';
 import { ShowMessage } from './EvaluateCard.js'
 
-const adminCard = '0012411156'
+const adminCards = ['0010728601','0012411156']
 
 const cardimg = (
   <img src={cardvector} alt='cardpic' style={{position:'absolute', left:'58.7vw',top:'38vh', height:'55vh', width:'auto',borderTopLeftRadius:80,borderBottomLeftRadius:80}}/>
@@ -22,7 +22,7 @@ export default function App() {
     const { value } = event.target;
     setInputValue(value);
     if (value.length === 10) {
-      if(value === adminCard){
+      if(adminCards.includes(value)){
         setloginpage(true)
         setinFrame(false)
       }

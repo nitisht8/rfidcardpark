@@ -10,7 +10,6 @@ import { ManageSystem } from './Manage.js';
 import { ManageStaff } from './StaffAccounts.js';
 import App from './App.js'
 import './fonts.css'
-import { Typography } from '@mui/material';
 
 const ButtonStyle = {
   backgroundSize: '80%',
@@ -57,7 +56,7 @@ export function AdminControl() {
             transform: 'translate(-50%, -50%)'
           }}
         >
-          <Stack direction='row' spacing={8}>
+          <Stack direction='row' spacing={5} sx={{mt:7}}>
             <Button
               style={{ ...ButtonStyle, backgroundImage: `url(${analyticimg})`, backgroundPositionY: '225%' }}
               variant='contained'
@@ -68,7 +67,7 @@ export function AdminControl() {
               </p>
             </Button>
             <Button
-              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'450%'}}
+              style={{...ButtonStyle, backgroundImage: `url(${settingsimg})`, backgroundPositionY:'500%'}}
               variant='contained'
               onClick={() => handleClick('manage')}
             >
@@ -86,13 +85,13 @@ export function AdminControl() {
           </Stack>
           <Button
             style={{
-              marginTop: '1vh',
-              width: '15vw',
+              marginTop: '2vh',
+              width: '14vw',
             }}
             variant="contained"
             onClick={() => handleClick('return')}
           >
-            Return Home
+            Exit Admin Access
           </Button>
         </div>
       </Fade>
